@@ -38,3 +38,5 @@
 **/.vs/**
 */Libraries/*
 */Intermediate/*
+Intermediate/
+Libraries/
