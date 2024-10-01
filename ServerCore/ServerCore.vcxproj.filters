@@ -40,6 +40,9 @@
     <ClInclude Include="CoreTLS.h">
       <Filter>소스 파일\Main</Filter>
     </ClInclude>
+    <ClInclude Include="SocketUtils.h">
+      <Filter>소스 파일\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ThreadManager.cpp">
@@ -59,6 +62,9 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketUtils.cpp">
+      <Filter>소스 파일\Utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
