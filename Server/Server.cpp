@@ -9,58 +9,48 @@ using namespace std;
 //#include "TestMain.h"
 #include "ThreadManager.h"
 
+// Select 모델 = (select 함수가 핵심이 되는)
+// 소켓 함수 호출이 성공할 시점을 미리 알 수 있다!
+// 문제 상황)
+// 수신버퍼에 데이터가 없는데, read 한다거나!
+// 송신버퍼가 꽉 찼는데, write 한다거나!
+// - 블로킹 소켓 : 조건이 만족되지 않아서 블로킹되는 상황 예방
+// - 논블로킹 소켓 : 조건이 만족되지 않아서 불필요하게 반복 체크하는 상황을 예방
 
-// 서버
-// 1) 새로운 소켓 생성 (socket)
-// 2) 소켓에 주소/포트 번호 설정 (bind)
-// --------------------
-// 3) 클라와 통신
+// socket set
+// 1) 읽기[ ] 쓰기[ ] 예외(OOB)[ ] 관찰 대상 등록
+// OutOfBand는 send() 마지막 인자 MSG_OOB로 보내는 특별한 데이터
+// 받는 쪽에서도 recv OOB 세팅을 해야 읽을 수 있음
+// 2) select(readSet, writeSet, exceptSet); -> 관찰 시작
+// 3) 적어도 하나의 소켓이 준비되면 리턴 -> 낙오자는 알아서 제거됨
+// 4) 남은 소켓 체크해서 진행
+
+// fd_set set;
+// FD_ZERO : 비운다
+// ex) FD_ZERO(set);
+// FD_SET : 소켓 s를 넣는다
+// ex) FD_SET(s, &set);
+// FD_CLR : 소켓 s를 제거
+// ex) FD_CLR(s, &set);
+// FD_ISSET : 소켓 s가 set에 들어있으면 0이 아닌 값을 리턴한다
+
+const int32 BUFSIZE = 1000;
+
+struct Session
+{
+	SOCKET socket = INVALID_SOCKET;
+	char recvBuffer[BUFSIZE] = {};
+	int32 recvBytes = 0;
+};
 
 int main()
 {
 	SocketUtils::Init();
 
-	// 블로킹 소켓
-	// accept -> 접속한 클라가 있을 때
-	// connect -> 서버 접속 성공했을 때
-	// send -> 요청한 데이터를 송신 버퍼에 복사했을 때
-	// recv -> 수신 버퍼에 도착한 데이터가 있고, 이를 유저레벨 버퍼에 복사했을 때
-
 	SOCKET listenSocket = ::socket(AF_INET, SOCK_STREAM, 0);
 	if (listenSocket == INVALID_SOCKET)
 		return 0;
-	/*
-	//소켓 옵션
-	// - 1) level (SOL_SOCKET, IPPROTO_IP, IPPROTO_TCP)
-	// - 2) optname
-	// - 3) optval
 
-	// SO_KEEPALIVE
-	bool enable = true;
-	::setsockopt(listenSocket, SOL_SOCKET, SO_KEEPALIVE, (char*)&enable, sizeof(enable));
-
-	// SO_LINGER = 지연하다.
-	// SO_SNDBUF
-	// SO_RCVBUF
-
-	int32 sendBufferSize;
-	int32 optionLen = sizeof(sendBufferSize);
-	::getsockopt(listenSocket, SOL_SOCKET, SO_SNDBUF, (char*)&sendBufferSize, &optionLen);
-	cout << "송신 버퍼 크기" << sendBufferSize << endl; //64KB
-
-	// SO_REUSEADDR
-	{
-		bool enable = true;
-		::setsockopt(listenSocket, SOL_SOCKET, SO_REUSEADDR, (char*)&enable, sizeof(enable));
-	}
-
-	// IPPROTO_TCP
-	// TCP_NODELAY = Nagle 알고리즘 작동 여부
-	// 1byte << [ ][ ][ ][ ][ ][ ][ ][ ][ ][ ][ ][ ] 패킷을 뭉처보낸다.
-	*/
-
-	// https://learn.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-ioctlsocket
-	// 논블로킹 소켓으로
 	u_long on = 1;
 	if (::ioctlsocket(listenSocket, FIONBIO, &on) == INVALID_SOCKET)
 		return 0;
@@ -70,42 +60,67 @@ int main()
 	if (SocketUtils::BindAnyAddress(listenSocket, 7777) == false)
 		return 0;
 
-	if (SocketUtils::Listen(listenSocket, SOMAXCONN) == false)
-		return 0;
+	SocketUtils::Listen(listenSocket);
 
 	SOCKADDR_IN clientAddr;
 	int32 addrLen = sizeof(clientAddr);
 
-	// Accept
+	vector<Session> sessions;
+	sessions.reserve(100);
+
+	fd_set reads;
+	fd_set writes;
+
 	while (true)
 	{
-		SOCKET clientSocket = ::accept(listenSocket, (SOCKADDR*)&clientAddr, &addrLen);
-		if (clientSocket == INVALID_SOCKET)
-		{
-			// 원래 블로킹했어야 했는데... 너가 논블로킹으로 하라며?
-			if (::WSAGetLastError() == WSAEWOULDBLOCK)
-				continue;
-		}
+		// 소켓 셋 초기화
+		FD_ZERO(&reads);
 
-		cout << "Client Connected!" << endl;
+		// ListenSocket 등록
+		FD_SET(listenSocket, &reads);
 
-		// Recv
-		while (true)
+		// 소켓 등록
+		for (Session& s : sessions)
+			FD_SET(s.socket, &reads);
+
+		// [옵션] 마지막 timeout 인자 설정 가능
+		int32 retVal = ::select(0, &reads, nullptr, nullptr, nullptr);
+		if (retVal == SOCKET_ERROR)
+			break;
+
+		if (FD_ISSET(listenSocket, &reads))
 		{
-			char recvBuffer[1000];
-			int32 recvLen = ::recv(clientSocket, recvBuffer, sizeof(recvBuffer), 0);
-			if (recvLen == SOCKET_ERROR)
+			SOCKADDR_IN clientAddr;
+			int32 addrLen = sizeof(clientAddr);
+			SOCKET clientSocket = ::accept(listenSocket, (SOCKADDR*)&clientAddr, &addrLen);
+
+			if (clientSocket != INVALID_SOCKET)
 			{
 				// 원래 블로킹했어야 했는데... 너가 논블로킹으로 하라며?
 				if (::WSAGetLastError() == WSAEWOULDBLOCK)
 					continue;
-
-				// TODO
-				break;
+				cout << "Client Connected" << endl;
+				sessions.push_back(Session{ clientSocket });
 			}
+		}
 
-			cout << "Recv Data = " << recvBuffer << endl;
-			cout << "Recv Data len = " << recvLen << endl;
+		// 나머지 소켓 체크
+		for (Session& s : sessions)
+		{
+			// Read
+			if (FD_ISSET(s.socket, &reads))
+			{
+				int32 recvLen = ::recv(s.socket, s.recvBuffer, BUFSIZE, 0);
+				if (recvLen <= 0)
+				{
+					// TODO : sessions 제거
+					continue;
+				}
+
+				cout << "Recv Data = " << s.recvBuffer << endl;
+				s.recvBytes = recvLen;
+				cout << "RecvLen = " << recvLen << endl;
+			}
 		}
 	}
 
