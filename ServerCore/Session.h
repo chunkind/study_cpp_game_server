@@ -78,11 +78,9 @@ private:
 	USE_LOCK;
 
 	/* 수신 관련 */
-	//new
 	RecvBuffer				_recvBuffer;
 
 	/* 송신 관련 */
-	//new
 	queue<SendBufferRef>	_sendQueue;
 	atomic<bool>			_sendRegistered = false;
 
@@ -91,7 +89,6 @@ private:
 	IocpEvent		_connectEvent{ EventType::Connect };
 	IocpEvent		_disconnectEvent{ EventType::Disconnect };
 	IocpEvent		_recvEvent{ EventType::Recv };
-	//new
 	IocpEvent		_sendEvent{ EventType::Send };
 };
 
