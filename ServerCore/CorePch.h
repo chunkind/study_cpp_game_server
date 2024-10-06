@@ -21,9 +21,10 @@ using namespace std;
 #include <ws2tcpip.h>
 #include <stdio.h>
 #include <windows.h>
-#include <assert.h>
 
+#include <assert.h>
 #include "SocketUtils.h"
+#include "SendBuffer.h"
 
 // Need to link with Ws2_32.lib
 #pragma comment(lib, "ws2_32.lib")
