@@ -12,7 +12,6 @@ public:
 
 	static void Handle_S_TEST(BYTE* buffer, int32 len);
 
-	//new
 	// º¸³»±â
 	template<typename T>
 	static SendBufferRef MakeSendBuffer(T& pkt, uint16 pktId)
