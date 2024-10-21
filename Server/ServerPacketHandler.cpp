@@ -1,5 +1,3 @@
-//new
-
 #include "pch.h"
 #include "ServerPacketHandler.h"
 #include "BufferReader.h"

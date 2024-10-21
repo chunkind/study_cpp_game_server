@@ -10,10 +10,8 @@ using namespace std;
 #include "Listener.h"
 #include "Service.h"
 #include "GameSession.h"
-//new
 #include "GameSessionManager.h"
 #include "ServerPacketHandler.h"
-
 
 int main()
 {
@@ -38,10 +36,8 @@ int main()
 			});
 	}
 
-	//new
 	char sendData[1000] = "Hello World";
 
-	//new
 	// Contents
 	while (true)
 	{

@@ -1,5 +1,3 @@
-//new
-
 #pragma once
 
 enum

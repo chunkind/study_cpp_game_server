@@ -21,7 +21,6 @@ void SendBuffer::CopyData(void* data, int32 len)
 	_writeSize = len;
 }
 
-//new
 void SendBuffer::Close(uint32 writeSize)
 {
 	_writeSize = writeSize;

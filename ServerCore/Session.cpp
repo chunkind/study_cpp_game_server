@@ -312,17 +312,14 @@ void Session::HandleError(int32 errorCode)
 	PacketSession
 ------------------*/
 
-//new
 PacketSession::PacketSession()
 {
 }
 
-//new
 PacketSession::~PacketSession()
 {
 }
 
-//new
 // [size(2)][id(2)][data....][size(2)][id(2)][data....]
 int32 PacketSession::OnRecv(BYTE* buffer, int32 len)
 {
