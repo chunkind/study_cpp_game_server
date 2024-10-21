@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>C:\git\study_cpp_game_server\Libraries\ServerCore\$(Configuration)\</OutDir>
+    <OutDir>C:\git\study_cpp_game_server\Libraries\Libs\ServerCore\$(Configuration)\</OutDir>
     <IntDir>C:\git\study_cpp_game_server\Intermediate\ServerCore\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
