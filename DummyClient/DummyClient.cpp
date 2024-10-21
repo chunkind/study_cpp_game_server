@@ -3,27 +3,40 @@
 #include "ThreadManager.h"
 #include "Service.h"
 #include "Session.h"
+//new
+#include "ClientPacketHandler.h"
 
 char sendData[] = "Hello World";
 
-class ServerSession : public Session
+//old
+//class ServerSession : public Session
+//new
+class ServerSession : public PacketSession
+
 {
 public:
 	~ServerSession()
 	{
 		cout << "~ServerSession" << endl;
 	}
-
-	virtual void OnConnected() override
+	
+	//old
+	/*virtual void OnConnected() override
 	{
 		cout << "Connected To Server" << endl;
 
 		SendBufferRef sendBuffer = make_shared<SendBuffer>(4096);
 		sendBuffer->CopyData(sendData, sizeof(sendData));
 		Send(sendBuffer);
+	}*/
+	//new
+	virtual void OnConnected() override
+	{
+		cout << "Connected To Server" << endl;
 	}
 
-	virtual int32 OnRecv(BYTE* buffer, int32 len) override
+	//old
+	/*virtual int32 OnRecv(BYTE* buffer, int32 len) override
 	{
 		cout << "OnRecv Len = " << len << endl;
 
@@ -34,16 +47,23 @@ public:
 		Send(sendBuffer);
 
 		return len;
+	}*/
+	//new
+	virtual void OnRecvPacket(BYTE* buffer, int32 len) override
+	{
+		ClientPacketHandler::HandlePacket(buffer, len);
 	}
 
 	virtual void OnSend(int32 len) override
 	{
-		cout << "OnSend Len = " << len << endl;
+		//old
+		//cout << "OnSend Len = " << len << endl;
 	}
 
 	virtual void OnDisconnected() override
 	{
-		cout << "Disconnected" << endl;
+		//old
+		//cout << "Disconnected" << endl;
 	}
 };
 

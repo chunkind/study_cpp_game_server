@@ -10,6 +10,10 @@ using namespace std;
 #include "Listener.h"
 #include "Service.h"
 #include "GameSession.h"
+//new
+#include "GameSessionManager.h"
+#include "ServerPacketHandler.h"
+
 
 int main()
 {
@@ -32,6 +36,20 @@ int main()
 					service->GetIocpCore()->Dispatch();
 				}
 			});
+	}
+
+	//new
+	char sendData[1000] = "Hello World";
+
+	//new
+	// Contents
+	while (true)
+	{
+		vector<BuffData> buffs{ BuffData {100, 1.5f}, BuffData{200, 2.3f}, BuffData {300, 0.7f } };
+		SendBufferRef sendBuffer = ServerPacketHandler::Make_S_TEST(1001, 100, 10, buffs);
+		GSessionManager.Broadcast(sendBuffer);
+
+		this_thread::sleep_for(250ms);
 	}
 
 	GThreadManager->Join();

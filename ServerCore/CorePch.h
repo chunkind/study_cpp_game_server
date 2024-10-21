@@ -25,6 +25,8 @@ using namespace std;
 #include <assert.h>
 #include "SocketUtils.h"
 #include "SendBuffer.h"
+//new
+#include "Session.h"
 
 // Need to link with Ws2_32.lib
 #pragma comment(lib, "ws2_32.lib")

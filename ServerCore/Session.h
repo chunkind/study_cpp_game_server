@@ -92,3 +92,27 @@ private:
 	IocpEvent		_sendEvent{ EventType::Send };
 };
 
+/*-----------------
+	PacketSession
+------------------*/
+
+//new
+struct PacketHeader
+{
+	uint16 size;
+	uint16 id; // 프로토콜ID (ex. 1=로그인, 2=이동요청)
+};
+
+//new
+class PacketSession : public Session
+{
+public:
+	PacketSession();
+	virtual ~PacketSession();
+
+	PacketSessionRef	GetPacketSessionRef() { return static_pointer_cast<PacketSession>(shared_from_this()); }
+
+protected:
+	virtual int32		OnRecv(BYTE* buffer, int32 len) sealed; //나까지만 쓰고 상속 안된다.
+	virtual void		OnRecvPacket(BYTE* buffer, int32 len) abstract;
+};
