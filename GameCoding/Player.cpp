@@ -39,13 +39,7 @@ void Player::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//old
-	//SetState(PlayerState::Move);
-	//new
 	SetState(ObjectState::Move);
-	//old
-	//SetState(PlayerState::Idle);
-	//new
 	SetState(ObjectState::Idle);
 
 	SetCellPos({ 5, 5 }, true);
@@ -57,21 +51,12 @@ void Player::Tick()
 
 	switch (_state)
 	{
-	//old
-	//case PlayerState::Idle:
-	//new
 	case ObjectState::Idle:
 		TickIdle();
 		break;
-	//old
-	//case PlayerState::Move:
-	//new
 	case ObjectState::Move:
 		TickMove();
 		break;
-	//old
-	//case PlayerState::Skill:
-	//new
 	case ObjectState::Skill:
 		TickSkill();
 		break;
@@ -98,9 +83,6 @@ void Player::TickIdle()
 		if (CanGo(nextPos))
 		{
 			SetCellPos(nextPos);
-			//old
-			//SetState(PlayerState::Move);
-			//new
 			SetState(ObjectState::Move);
 		}
 	}
@@ -112,9 +94,6 @@ void Player::TickIdle()
 		if (CanGo(nextPos))
 		{
 			SetCellPos(nextPos);
-			//old
-			//SetState(PlayerState::Move);
-			//new
 			SetState(ObjectState::Move);
 		}
 	}
@@ -125,9 +104,6 @@ void Player::TickIdle()
 		if (CanGo(nextPos))
 		{
 			SetCellPos(nextPos);
-			//old
-			//SetState(PlayerState::Move);
-			//new
 			SetState(ObjectState::Move);
 		}
 	}
@@ -138,18 +114,12 @@ void Player::TickIdle()
 		if (CanGo(nextPos))
 		{
 			SetCellPos(nextPos);
-			//old
-			//SetState(PlayerState::Move);
-			//new
 			SetState(ObjectState::Move);
 		}
 	}
 	else
 	{
 		_keyPressed = false;
-		//old
-		//if (_state == PlayerState::Idle)
-		//new
 		if (_state == ObjectState::Idle)
 			UpdateAnimation();
 	}
@@ -160,15 +130,9 @@ void Player::TickMove()
 	float deltaTime = GET_SINGLE(TimeManager)->GetDeltaTime();
 
 	Vec2 dir = (_destPos - _pos);
-	//old
-	//if (dir.Length() < 10.f)
-	//new
 	if (dir.Length() < 5.f)
 
 	{
-		//old
-		//SetState(PlayerState::Idle);
-		//new
 		SetState(ObjectState::Idle);
 		_pos = _destPos;
 	}
@@ -197,76 +161,21 @@ void Player::TickSkill()
 
 }
 
-//old
-/*void Player::SetState(PlayerState state)
-{
-	if (_state == state)
-		return;
-
-	_state = state;
-	UpdateAnimation();
-}
-
-void Player::SetDir(Dir dir)
-{
-	_dir = dir;
-	UpdateAnimation();
-}*/
-
 void Player::UpdateAnimation()
 {
 	switch (_state)
 	{
-	//old
-	//case PlayerState::Idle:
-	//new
 	case ObjectState::Idle:
 		if (_keyPressed)
 			SetFlipbook(_flipbookMove[_dir]);
 		else
 			SetFlipbook(_flipbookIdle[_dir]);
 		break;
-	//old
-	//case PlayerState::Move:
-	//new
 	case ObjectState::Move:
 		SetFlipbook(_flipbookMove[_dir]);
 		break;
-	//old
-	//case PlayerState::Skill:
-	//new
 	case ObjectState::Skill:
 		SetFlipbook(_flipbookAttack[_dir]);
 		break;
 	}
 }
-
-//old
-/*bool Player::HasReachedDest()
-{
-	Vec2 dir = (_destPos - _pos);
-	return (dir.Length() < 10.f);
-}
-
-bool Player::CanGo(Vec2Int cellPos)
-{
-	DevScene* scene = dynamic_cast<DevScene*>(GET_SINGLE(SceneManager)->GetCurrentScene());
-	if (scene == nullptr)
-		return false;
-
-	return scene->CanGo(cellPos);
-}
-
-void Player::SetCellPos(Vec2Int cellPos, bool teleport)
-{
-	_cellPos = cellPos;
-
-	DevScene* scene = dynamic_cast<DevScene*>(GET_SINGLE(SceneManager)->GetCurrentScene());
-	if (scene == nullptr)
-		return;
-
-	_destPos = scene->ConvertPos(cellPos);
-
-	if (teleport)
-		_pos = _destPos;
-}*/

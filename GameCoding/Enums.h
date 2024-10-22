@@ -37,7 +37,6 @@ enum Dir
 	DIR_RIGHT,
 };
 
-//new
 enum class ObjectState
 {
 	Idle,
@@ -45,7 +44,6 @@ enum class ObjectState
 	Skill
 };
 
-//new
 enum class WeaponType
 {
 	Sword,

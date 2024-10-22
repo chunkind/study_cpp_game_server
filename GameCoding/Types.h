@@ -15,7 +15,6 @@ struct Stat
 {
 	int32 hp = 0;
 	int32 maxHp = 0;
-	//new
 	int32 attack = 0;
 	int32 defence = 0;
 

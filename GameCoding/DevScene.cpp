@@ -150,14 +150,10 @@ void DevScene::Init()
 			GET_SINGLE(ResourceManager)->LoadTilemap(L"Tilemap_01", L"Tilemap\\Tilemap_01_FINAL.txt");
 
 			_tilemapActor->SetTilemap(tm);
-			//old
-			//_tilemapActor->SetShowDebug(true);
-			//new
 			_tilemapActor->SetShowDebug(false);
 		}
 	}
 
-	//old
 	/*GET_SINGLE(ResourceManager)->LoadSound(L"BGM", L"Sound\\BGM.wav");
 	{
 		Sound* sound = GET_SINGLE(ResourceManager)->GetSound(L"BGM");
