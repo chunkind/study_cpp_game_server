@@ -150,11 +150,15 @@ void DevScene::Init()
 			GET_SINGLE(ResourceManager)->LoadTilemap(L"Tilemap_01", L"Tilemap\\Tilemap_01_FINAL.txt");
 
 			_tilemapActor->SetTilemap(tm);
-			_tilemapActor->SetShowDebug(true);
+			//old
+			//_tilemapActor->SetShowDebug(true);
+			//new
+			_tilemapActor->SetShowDebug(false);
 		}
 	}
 
-	GET_SINGLE(ResourceManager)->LoadSound(L"BGM", L"Sound\\BGM.wav");
+	//old
+	/*GET_SINGLE(ResourceManager)->LoadSound(L"BGM", L"Sound\\BGM.wav");
 	{
 		Sound* sound = GET_SINGLE(ResourceManager)->GetSound(L"BGM");
 		sound->Play(true);
@@ -162,7 +166,7 @@ void DevScene::Init()
 		//GET_SINGLE(SoundManaer)->Play(L"BGM");
 	}
 
-	GET_SINGLE(ResourceManager)->LoadSound(L"Attack", L"Sound\\Sword.wav");
+	GET_SINGLE(ResourceManager)->LoadSound(L"Attack", L"Sound\\Sword.wav");*/
 
 	Super::Init();
 }
