@@ -145,6 +145,18 @@ struct VectorInt
 		y -= other.y;
 	}
 
+	//new
+	bool operator==(const VectorInt& other)
+	{
+		return x == other.x && y == other.y;
+	}
+
+	//new
+	bool operator!=(const VectorInt& other)
+	{
+		return !(*this == other);
+	}
+
 	int32 LengthSquared()
 	{
 		return x * x + y * y;

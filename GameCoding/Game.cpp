@@ -34,7 +34,7 @@ void Game::Init(HWND hwnd)
 	GET_SINGLE(TimeManager)->Init();
 	GET_SINGLE(InputManager)->Init(hwnd);
 	GET_SINGLE(SceneManager)->Init();
-	GET_SINGLE(ResourceManager)->Init(hwnd, fs::path(L"C:\\git\\study_cpp_game_all_in_one\\Resources"));
+	GET_SINGLE(ResourceManager)->Init(hwnd, fs::path(L"C:\\git\\study_cpp_game_server\\Resources"));
 	GET_SINGLE(SoundManager)->Init(hwnd);
 
 	GET_SINGLE(SceneManager)->ChangeScene(SceneType::DevScene);
@@ -49,6 +49,9 @@ void Game::Update()
 
 void Game::Render()
 {
+	//new 순서변경
+	GET_SINGLE(SceneManager)->Render(_hdcBack);
+
 	uint32 fps = GET_SINGLE(TimeManager)->GetFps();
 	float deltaTime = GET_SINGLE(TimeManager)->GetDeltaTime();
 
@@ -62,8 +65,6 @@ void Game::Render()
 		wstring str = std::format(L"FPS({0}), DT({1}) ms)", fps, static_cast<int32> (deltaTime * 1000));
 		::TextOut(_hdcBack, 650, 10, str.c_str(), static_cast<int32>(str.size()));
 	}
-
-	GET_SINGLE(SceneManager)->Render(_hdcBack);
 
 	::BitBlt(_hdc, 0, 0, _rect.right, _rect.bottom, _hdcBack, 0, 0, SRCCOPY); // 비트 블릿 : 고속 복사
 	::PatBlt(_hdcBack, 0, 0, _rect.right, _rect.bottom, WHITENESS); // 화면을 지움

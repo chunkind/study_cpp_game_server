@@ -26,6 +26,18 @@ Player::Player()
 	_flipbookAttack[DIR_LEFT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_AttackLeft");
 	_flipbookAttack[DIR_RIGHT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_AttackRight");
 
+	//new
+	_flipbookBow[DIR_UP] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_BowUp");
+	_flipbookBow[DIR_DOWN] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_BowDown");
+	_flipbookBow[DIR_LEFT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_BowLeft");
+	_flipbookBow[DIR_RIGHT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_BowRight");
+
+	//new
+	_flipbookStaff[DIR_UP] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_StaffUp");
+	_flipbookStaff[DIR_DOWN] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_StaffDown");
+	_flipbookStaff[DIR_LEFT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_StaffLeft");
+	_flipbookStaff[DIR_RIGHT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_StaffRight");
+
 	CameraComponent* camera = new CameraComponent();
 	AddComponent(camera);
 }
@@ -42,14 +54,16 @@ void Player::BeginPlay()
 	SetState(ObjectState::Move);
 	SetState(ObjectState::Idle);
 
-	SetCellPos({ 5, 5 }, true);
+	//old
+	//SetCellPos({ 5, 5 }, true);
 }
 
 void Player::Tick()
 {
 	Super::Tick();
 
-	switch (_state)
+	//old
+	/*switch (_state)
 	{
 	case ObjectState::Idle:
 		TickIdle();
@@ -60,7 +74,7 @@ void Player::Tick()
 	case ObjectState::Skill:
 		TickSkill();
 		break;
-	}
+	}*/
 }
 
 void Player::Render(HDC hdc)
@@ -123,6 +137,26 @@ void Player::TickIdle()
 		if (_state == ObjectState::Idle)
 			UpdateAnimation();
 	}
+
+	//new
+	if (GET_SINGLE(InputManager)->GetButtonDown(KeyType::KEY_1))
+	{
+		SetWeaponType(WeaponType::Sword);
+	}
+	else if (GET_SINGLE(InputManager)->GetButtonDown(KeyType::KEY_2))
+	{
+		SetWeaponType(WeaponType::Bow);
+	}
+	else if (GET_SINGLE(InputManager)->GetButtonDown(KeyType::KEY_3))
+	{
+		SetWeaponType(WeaponType::Staff);
+	}
+
+	//new
+	if (GET_SINGLE(InputManager)->GetButton(KeyType::SpaceBar))
+	{
+		SetState(ObjectState::Skill);
+	}
 }
 
 void Player::TickMove()
@@ -158,7 +192,15 @@ void Player::TickMove()
 
 void Player::TickSkill()
 {
+	//new
+	if (_flipbook == nullptr)
+		return;
 
+	//new
+	if (IsAnimationEnded())
+	{
+		SetState(ObjectState::Idle);
+	}
 }
 
 void Player::UpdateAnimation()
@@ -175,7 +217,16 @@ void Player::UpdateAnimation()
 		SetFlipbook(_flipbookMove[_dir]);
 		break;
 	case ObjectState::Skill:
-		SetFlipbook(_flipbookAttack[_dir]);
+		//old
+		//SetFlipbook(_flipbookAttack[_dir]);
+		//new
+		if (_weaponType == WeaponType::Sword)
+			SetFlipbook(_flipbookAttack[_dir]);
+		else if (_weaponType == WeaponType::Bow)
+			SetFlipbook(_flipbookBow[_dir]);
+		else
+			SetFlipbook(_flipbookStaff[_dir]);
+
 		break;
 	}
 }

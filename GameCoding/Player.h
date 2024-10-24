@@ -20,14 +20,22 @@ private:
 	virtual void TickIdle() override;
 	virtual void TickMove() override;
 	virtual void TickSkill() override;
-
 	virtual void UpdateAnimation() override;
+
+	//new
+	void SetWeaponType(WeaponType weaponType) { _weaponType = weaponType; }
+	WeaponType GetWeaponType() { return _weaponType; }
 
 private:
 	Flipbook* _flipbookIdle[4] = {};
 	Flipbook* _flipbookMove[4] = {};
 	Flipbook* _flipbookAttack[4] = {};
+	//new
+	Flipbook* _flipbookBow[4] = {};
+	Flipbook* _flipbookStaff[4] = {};
 
 	bool _keyPressed = false;
+	//new
+	WeaponType _weaponType = WeaponType::Sword;
 };
 
