@@ -17,7 +17,6 @@ public:
 	virtual void Update() override;
 	virtual void Render(HDC hdc) override;
 
-	//new
 	void LoadMap();
 	void LoadPlayer();
 	void LoadMonster();
@@ -25,7 +24,6 @@ public:
 	void LoadEffect();
 	void LoadTilemap();
 
-	//new
 	template<typename T>
 	T* SpawnObject(Vec2Int pos)
 	{

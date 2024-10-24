@@ -49,7 +49,6 @@ void Game::Update()
 
 void Game::Render()
 {
-	//new 순서변경
 	GET_SINGLE(SceneManager)->Render(_hdcBack);
 
 	uint32 fps = GET_SINGLE(TimeManager)->GetFps();

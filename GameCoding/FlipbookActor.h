@@ -17,7 +17,6 @@ public:
 	void SetFlipbook(Flipbook* flipbook);
 	void Reset();
 
-	//new
 	bool IsAnimationEnded();
 
 protected:

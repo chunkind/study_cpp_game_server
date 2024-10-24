@@ -85,7 +85,6 @@ void FlipbookActor::Reset()
 	_idx = 0;
 }
 
-//new
 bool FlipbookActor::IsAnimationEnded()
 {
 	if(_flipbook == nullptr)

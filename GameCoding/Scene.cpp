@@ -1,9 +1,7 @@
 #include "pch.h"
 #include "Scene.h"
 #include "Actor.h"
-//new
 #include "Creature.h"
-
 #include "UI.h"
 #include "TimeManager.h"
 #include "SceneManager.h"
@@ -49,7 +47,6 @@ void Scene::Update()
 
 void Scene::Render(HDC hdc)
 {
-	//new
 	vector<Actor*>& actors = _actors[LAYER_OBJECT];
 	std::sort(actors.begin(), actors.end(), [=](Actor* a, Actor* b)
 		{
@@ -81,7 +78,6 @@ void Scene::RemoveActor(Actor* actor)
 	v.erase(std::remove(v.begin(), v.end(), actor), v.end());
 }
 
-//new
 Creature* Scene::GetCreatureAt(Vec2Int cellPos)
 {
 	for (Actor* actor : _actors[LAYER_OBJECT])

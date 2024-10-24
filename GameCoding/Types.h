@@ -145,13 +145,11 @@ struct VectorInt
 		y -= other.y;
 	}
 
-	//new
 	bool operator==(const VectorInt& other)
 	{
 		return x == other.x && y == other.y;
 	}
 
-	//new
 	bool operator!=(const VectorInt& other)
 	{
 		return !(*this == other);

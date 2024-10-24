@@ -26,13 +26,11 @@ Player::Player()
 	_flipbookAttack[DIR_LEFT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_AttackLeft");
 	_flipbookAttack[DIR_RIGHT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_AttackRight");
 
-	//new
 	_flipbookBow[DIR_UP] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_BowUp");
 	_flipbookBow[DIR_DOWN] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_BowDown");
 	_flipbookBow[DIR_LEFT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_BowLeft");
 	_flipbookBow[DIR_RIGHT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_BowRight");
 
-	//new
 	_flipbookStaff[DIR_UP] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_StaffUp");
 	_flipbookStaff[DIR_DOWN] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_StaffDown");
 	_flipbookStaff[DIR_LEFT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_StaffLeft");
@@ -53,28 +51,11 @@ void Player::BeginPlay()
 
 	SetState(ObjectState::Move);
 	SetState(ObjectState::Idle);
-
-	//old
-	//SetCellPos({ 5, 5 }, true);
 }
 
 void Player::Tick()
 {
 	Super::Tick();
-
-	//old
-	/*switch (_state)
-	{
-	case ObjectState::Idle:
-		TickIdle();
-		break;
-	case ObjectState::Move:
-		TickMove();
-		break;
-	case ObjectState::Skill:
-		TickSkill();
-		break;
-	}*/
 }
 
 void Player::Render(HDC hdc)
@@ -138,7 +119,6 @@ void Player::TickIdle()
 			UpdateAnimation();
 	}
 
-	//new
 	if (GET_SINGLE(InputManager)->GetButtonDown(KeyType::KEY_1))
 	{
 		SetWeaponType(WeaponType::Sword);
@@ -152,7 +132,6 @@ void Player::TickIdle()
 		SetWeaponType(WeaponType::Staff);
 	}
 
-	//new
 	if (GET_SINGLE(InputManager)->GetButton(KeyType::SpaceBar))
 	{
 		SetState(ObjectState::Skill);
@@ -192,11 +171,9 @@ void Player::TickMove()
 
 void Player::TickSkill()
 {
-	//new
 	if (_flipbook == nullptr)
 		return;
 
-	//new
 	if (IsAnimationEnded())
 	{
 		SetState(ObjectState::Idle);
@@ -217,16 +194,12 @@ void Player::UpdateAnimation()
 		SetFlipbook(_flipbookMove[_dir]);
 		break;
 	case ObjectState::Skill:
-		//old
-		//SetFlipbook(_flipbookAttack[_dir]);
-		//new
 		if (_weaponType == WeaponType::Sword)
 			SetFlipbook(_flipbookAttack[_dir]);
 		else if (_weaponType == WeaponType::Bow)
 			SetFlipbook(_flipbookBow[_dir]);
 		else
 			SetFlipbook(_flipbookStaff[_dir]);
-
 		break;
 	}
 }
