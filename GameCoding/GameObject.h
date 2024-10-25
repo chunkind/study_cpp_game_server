@@ -25,8 +25,11 @@ public:
 
 	bool HasReachedDest();
 	bool CanGo(Vec2Int cellPos);
+
 	void SetCellPos(Vec2Int cellPos, bool teleport = false);
 	Vec2Int GetCellPos() { return _cellPos; }
+	//new
+	Vec2Int GetFrontCellPos();
 
 protected:
 	Vec2Int _cellPos = {};

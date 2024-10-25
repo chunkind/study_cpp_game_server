@@ -14,6 +14,12 @@ Monster::Monster()
 	_flipbookMove[DIR_DOWN] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_SnakeDown");
 	_flipbookMove[DIR_LEFT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_SnakeLeft");
 	_flipbookMove[DIR_RIGHT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_SnakeRight");
+
+	//new
+	_stat.hp = 50;
+	_stat.maxHp = 50;
+	_stat.attack = 10;
+	_stat.defence = 0;
 }
 
 Monster::~Monster()
@@ -45,10 +51,12 @@ void Monster::TickIdle()
 
 void Monster::TickMove()
 {
+
 }
 
 void Monster::TickSkill()
 {
+
 }
 
 void Monster::UpdateAnimation()

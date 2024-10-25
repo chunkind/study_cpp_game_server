@@ -19,6 +19,10 @@ private:
 	virtual void TickSkill() override {}
 	virtual void UpdateAnimation() override {}
 
+//new
+public:
+	virtual void OnDamaged(Creature* attacker);
+
 	void SetStat(Stat stat) { _stat = stat; }
 	Stat& GetStat() { return _stat; }
 

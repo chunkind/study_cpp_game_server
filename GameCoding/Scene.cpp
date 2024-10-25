@@ -21,7 +21,10 @@ void Scene::Init()
 {
 	// 원래 게임이 시작하면 시작해야 함
 	{
-		for (const vector<Actor*>& actors : _actors)
+		//old
+		//for (const vector<Actor*>& actors : _actors)
+		//new: 포인터 삭제 위험이 있어 복사방식을 사용
+		for (const vector<Actor*> actors : _actors)
 			for (Actor* actor : actors)
 				actor->BeginPlay();
 
