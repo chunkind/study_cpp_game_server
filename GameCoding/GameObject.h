@@ -28,7 +28,6 @@ public:
 
 	void SetCellPos(Vec2Int cellPos, bool teleport = false);
 	Vec2Int GetCellPos() { return _cellPos; }
-	//new
 	Vec2Int GetFrontCellPos();
 
 protected:

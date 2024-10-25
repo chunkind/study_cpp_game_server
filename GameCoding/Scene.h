@@ -14,10 +14,6 @@ public:
 	virtual void Update();
 	virtual void Render(HDC hdc);
 
-	//old
-	/*void AddActor(Actor* actor);
-	void RemoveActor(Actor* actor);*/
-	//new
 	virtual void AddActor(Actor* actor);
 	virtual void RemoveActor(Actor* actor);
 

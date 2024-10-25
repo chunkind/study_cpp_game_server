@@ -14,9 +14,6 @@ public:
 	virtual void Render(HDC hdc) override;
 
 private:
-	//old
-	//virtual void UpdateAnimation() override {}
-	//new
 	virtual void UpdateAnimation() override;
 
 };

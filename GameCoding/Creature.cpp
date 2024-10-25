@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "Creature.h"
-//new
 #include "SceneManager.h"
 #include "DevScene.h"
 
@@ -27,7 +26,6 @@ void Creature::Render(HDC hdc)
 	Super::Render(hdc);
 }
 
-//new
 void Creature::OnDamaged(Creature* attacker)
 {
 	if (attacker == nullptr)

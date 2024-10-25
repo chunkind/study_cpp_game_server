@@ -76,7 +76,6 @@ void DevScene::Update()
 
 	float deltaTime = GET_SINGLE(TimeManager)->GetDeltaTime();
 
-	//new
 	TickMonsterSpawn();
 }
 
@@ -85,7 +84,6 @@ void DevScene::Render(HDC hdc)
 	Super::Render(hdc);
 }
 
-//new
 void DevScene::AddActor(Actor* actor)
 {
 	Super::AddActor(actor);
@@ -97,7 +95,6 @@ void DevScene::AddActor(Actor* actor)
 	}
 }
 
-//new
 void DevScene::RemoveActor(Actor* actor)
 {
 	Super::RemoveActor(actor);
@@ -347,7 +344,6 @@ Vec2 DevScene::ConvertPos(Vec2Int cellPos)
 	return ret;
 }
 
-//new
 Vec2Int DevScene::GetRandomEmptyCellPos()
 {
 	Vec2Int ret = { -1, -1 };
@@ -372,7 +368,6 @@ Vec2Int DevScene::GetRandomEmptyCellPos()
 	}
 }
 
-//new
 void DevScene::TickMonsterSpawn()
 {
 	if (_monsterCount < DESIRED_MONSTER_COUNT)

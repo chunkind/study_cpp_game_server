@@ -17,7 +17,6 @@ public:
 	virtual void Update() override;
 	virtual void Render(HDC hdc) override;
 
-	//new
 	virtual void AddActor(Actor* actor) override;
 	virtual void RemoveActor(Actor* actor) override;
 
@@ -44,7 +43,6 @@ public:
 		return ret;
 	}
 
-	//new
 	template<typename T>
 	T* SpawnObjectAtRandomPos()
 	{
@@ -54,14 +52,11 @@ public:
 
 	bool CanGo(Vec2Int cellPos);
 	Vec2 ConvertPos(Vec2Int cellPos);
-	//new
 	Vec2Int GetRandomEmptyCellPos();
 
-//new
 private:
 	void TickMonsterSpawn();
 
-//new
 private:
 	const int32 DESIRED_MONSTER_COUNT = 20;
 	int32 _monsterCount = 0;
