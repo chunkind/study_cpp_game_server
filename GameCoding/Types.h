@@ -145,6 +145,24 @@ struct VectorInt
 		y -= other.y;
 	}
 
+	//new
+	bool operator<(const VectorInt& other) const
+	{
+		if (x != other.x)
+			return x < other.x;
+
+		return y < other.y;
+	}
+
+	//new
+	bool operator>(const VectorInt& other) const
+	{
+		if (x != other.x)
+			return x > other.x;
+
+		return y > other.y;
+	}
+
 	bool operator==(const VectorInt& other)
 	{
 		return x == other.x && y == other.y;

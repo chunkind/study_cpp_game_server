@@ -7,6 +7,9 @@
 #include "CameraComponent.h"
 #include "SceneManager.h"
 #include "DevScene.h"
+//new
+#include "Player.h"
+#include "HitEffect.h"
 
 Monster::Monster()
 {
@@ -43,19 +46,128 @@ void Monster::Render(HDC hdc)
 	Super::Render(hdc);
 }
 
+//old
+/*void Monster::TickIdle()
+{
+
+}*/
+//new
 void Monster::TickIdle()
 {
+	DevScene* scene = dynamic_cast<DevScene*>(GET_SINGLE(SceneManager)->GetCurrentScene());
+	if (scene == nullptr)
+		return;
 
+	// Find Player
+	if (_target == nullptr)
+		_target = scene->FindClosestPlayer(GetCellPos());
+
+	if (_target)
+	{
+		Vec2Int dir = _target->GetCellPos() - GetCellPos();
+		int32 dist = abs(dir.x) + abs(dir.y);
+		if (dist == 1)
+		{
+			// 공격
+			SetDir(GetLookAtDir(_target->GetCellPos()));
+			SetState(ObjectState::Skill);
+			_waitSeconds = 0.5f; // 공격 종료 시간
+		}
+		else
+		{
+			vector<Vec2Int> path;
+			if (scene->FindPath(GetCellPos(), _target->GetCellPos(), OUT path))
+			{
+				if (path.size() > 1)
+				{
+					Vec2Int nextPos = path[1];
+					if (scene->CanGo(nextPos))
+					{
+						SetCellPos(nextPos);
+						SetState(ObjectState::Move);
+					}
+				}
+				else
+					SetCellPos(path[0]);
+			}
+		}
+	}
 }
 
+//old
+/*void Monster::TickMove()
+{
+
+}*/
+//new
 void Monster::TickMove()
 {
+	float deltaTime = GET_SINGLE(TimeManager)->GetDeltaTime();
 
+	Vec2 dir = (_destPos - _pos);
+	if (dir.Length() < 5.f)
+	{
+		SetState(ObjectState::Idle);
+		_pos = _destPos;
+	}
+	else
+	{
+		bool horizontal = abs(dir.x) > abs(dir.y);
+		if (horizontal)
+			SetDir(dir.x < 0 ? DIR_LEFT : DIR_RIGHT);
+		else
+			SetDir(dir.y < 0 ? DIR_UP : DIR_DOWN);
+
+		switch (_dir)
+		{
+		case DIR_UP:
+			_pos.y -= 50 * deltaTime;
+			break;
+		case DIR_DOWN:
+			_pos.y += 50 * deltaTime;
+			break;
+		case DIR_LEFT:
+			_pos.x -= 50 * deltaTime;
+			break;
+		case DIR_RIGHT:
+			_pos.x += 50 * deltaTime;
+			break;
+		}
+	}
 }
 
+//old
+/*void Monster::TickSkill()
+{
+	
+}*/
+//new
 void Monster::TickSkill()
 {
+	if (_flipbook == nullptr)
+		return;
 
+	if (_waitSeconds > 0)
+	{
+		float deltaTime = GET_SINGLE(TimeManager)->GetDeltaTime();
+		_waitSeconds = max(0, _waitSeconds - deltaTime);
+		return;
+	}
+
+	{
+		DevScene* scene = dynamic_cast<DevScene*>(GET_SINGLE(SceneManager)->GetCurrentScene());
+		if (scene == nullptr)
+			return;
+
+		Creature* creature = scene->GetCreatureAt(GetFrontCellPos());
+		if (creature)
+		{
+			scene->SpawnObject<HitEffect>(GetFrontCellPos());
+			creature->OnDamaged(this);
+		}
+
+		SetState(ObjectState::Idle);
+	}
 }
 
 void Monster::UpdateAnimation()
