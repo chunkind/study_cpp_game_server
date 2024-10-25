@@ -145,7 +145,6 @@ struct VectorInt
 		y -= other.y;
 	}
 
-	//new
 	bool operator<(const VectorInt& other) const
 	{
 		if (x != other.x)
@@ -154,7 +153,6 @@ struct VectorInt
 		return y < other.y;
 	}
 
-	//new
 	bool operator>(const VectorInt& other) const
 	{
 		if (x != other.x)

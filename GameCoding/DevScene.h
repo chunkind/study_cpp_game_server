@@ -2,13 +2,10 @@
 #include "Scene.h"
 
 class Actor;
-//new
 class Player;
-
 class GameObject;
 class UI;
 
-//new
 struct PQNode
 {
 	PQNode(int32 cost, Vec2Int pos) : cost(cost), pos(pos) { }
@@ -65,7 +62,6 @@ public:
 		return SpawnObject<T>(randPos);
 	}
 
-	//new
 	Player* FindClosestPlayer(Vec2Int cellPos);
 	bool FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32 maxDepth = 10);
 

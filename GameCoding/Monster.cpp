@@ -7,7 +7,6 @@
 #include "CameraComponent.h"
 #include "SceneManager.h"
 #include "DevScene.h"
-//new
 #include "Player.h"
 #include "HitEffect.h"
 
@@ -46,12 +45,6 @@ void Monster::Render(HDC hdc)
 	Super::Render(hdc);
 }
 
-//old
-/*void Monster::TickIdle()
-{
-
-}*/
-//new
 void Monster::TickIdle()
 {
 	DevScene* scene = dynamic_cast<DevScene*>(GET_SINGLE(SceneManager)->GetCurrentScene());
@@ -94,12 +87,6 @@ void Monster::TickIdle()
 	}
 }
 
-//old
-/*void Monster::TickMove()
-{
-
-}*/
-//new
 void Monster::TickMove()
 {
 	float deltaTime = GET_SINGLE(TimeManager)->GetDeltaTime();
@@ -136,12 +123,6 @@ void Monster::TickMove()
 	}
 }
 
-//old
-/*void Monster::TickSkill()
-{
-	
-}*/
-//new
 void Monster::TickSkill()
 {
 	if (_flipbook == nullptr)

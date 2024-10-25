@@ -1,7 +1,6 @@
 #pragma once
 #include "Creature.h"
 
-//new
 class Player;
 
 class Monster : public Creature
@@ -24,10 +23,8 @@ private:
 
 protected:
 	Flipbook* _flipbookMove[4] = {};
-	//new
 	float _waitSeconds = 0;
 
-	//new
 	Player* _target = nullptr; // TEMP
 };
 

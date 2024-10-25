@@ -17,9 +17,7 @@
 #include <string>
 #include <algorithm>
 #include <functional>
-//new
 #include <queue>
-
 using namespace std;
 #include <assert.h>
 

@@ -80,7 +80,6 @@ bool GameObject::CanGo(Vec2Int cellPos)
 	return scene->CanGo(cellPos);
 }
 
-//new
 Dir GameObject::GetLookAtDir(Vec2Int cellPos)
 {
 	Vec2Int dir = cellPos - GetCellPos();

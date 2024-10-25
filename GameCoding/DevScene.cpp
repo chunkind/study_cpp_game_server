@@ -305,7 +305,6 @@ void DevScene::LoadTilemap()
 	}
 }
 
-//new
 Player* DevScene::FindClosestPlayer(Vec2Int cellPos)
 {
 	float best = FLT_MAX;
@@ -329,7 +328,6 @@ Player* DevScene::FindClosestPlayer(Vec2Int cellPos)
 	return ret;
 }
 
-//new
 // A* -> Dijikstra -> BFS -> Graph
 // PQ
 bool DevScene::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32 maxDepth)
