@@ -69,6 +69,9 @@
     <Filter Include="소스 파일\07. Network">
       <UniqueIdentifier>{5b4187f8-249e-463f-b7d3-9912d03e9e93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\01. Manager\Game">
+      <UniqueIdentifier>{712db56c-f0bc-4687-86a7-da67487405ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -161,9 +164,6 @@
     <ClInclude Include="DevScene.h">
       <Filter>소스 파일\02. Scene\Game</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionManager.h">
-      <Filter>소스 파일\01. Manager</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>소스 파일\01. Manager</Filter>
     </ClInclude>
@@ -220,6 +220,12 @@
     </ClInclude>
     <ClInclude Include="ServerSession.h">
       <Filter>소스 파일\07. Network</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkManager.h">
+      <Filter>소스 파일\01. Manager\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>소스 파일\01. Manager\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -308,9 +314,6 @@
     <ClCompile Include="EditScene.cpp">
       <Filter>소스 파일\02. Scene\Game</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionManager.cpp">
-      <Filter>소스 파일\01. Manager</Filter>
-    </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>소스 파일\01. Manager</Filter>
     </ClCompile>
@@ -364,6 +367,12 @@
     </ClCompile>
     <ClCompile Include="ServerSession.cpp">
       <Filter>소스 파일\07. Network</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkManager.cpp">
+      <Filter>소스 파일\01. Manager\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>소스 파일\01. Manager\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

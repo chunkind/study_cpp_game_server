@@ -5,7 +5,8 @@
 #include "UI.h"
 #include "TimeManager.h"
 #include "SceneManager.h"
-#include "CollisionManager.h"
+//old
+//#include "CollisionManager.h"
 
 Scene::Scene()
 {
@@ -35,7 +36,8 @@ void Scene::Update()
 	float deltaTime = GET_SINGLE(TimeManager)->GetDeltaTime();
 	// 거리 = 시간 * 속도
 
-	GET_SINGLE(CollisionManager)->Update();
+	//old
+	//GET_SINGLE(CollisionManager)->Update();
 
 	for (const vector<Actor*>& actors : _actors)
 		for (Actor* actor : actors)

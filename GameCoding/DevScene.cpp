@@ -12,7 +12,8 @@
 #include "Flipbook.h"
 #include "SphereCollider.h"
 #include "BoxCollider.h"
-#include "CollisionManager.h"
+//old
+//#include "CollisionManager.h"
 #include "UI.h"
 #include "TilemapActor.h"
 #include "Tilemap.h"
