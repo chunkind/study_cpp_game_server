@@ -2,7 +2,9 @@
 
 enum
 {
-	S_TEST = 1
+	S_TEST = 1,
+	//new
+	S_EnterGame = 2,
 };
 
 class ClientPacketHandler
@@ -10,7 +12,10 @@ class ClientPacketHandler
 public:
 	static void HandlePacket(BYTE* buffer, int32 len);
 
+	//받기
 	static void Handle_S_TEST(BYTE* buffer, int32 len);
+	//new
+	static void Handle_S_EnterGame(BYTE* buffer, int32 len);
 
 	// 보내기
 	template<typename T>

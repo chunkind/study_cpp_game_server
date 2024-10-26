@@ -36,7 +36,8 @@ int main()
 			});
 	}
 
-	char sendData[1000] = "Hello World";
+	//old: 브로드케스트 사용 안함
+	/*char sendData[1000] = "Hello World";
 
 	// Contents
 	while (true)
@@ -46,7 +47,7 @@ int main()
 		GSessionManager.Broadcast(sendBuffer);
 
 		this_thread::sleep_for(250ms);
-	}
+	}*/
 
 	GThreadManager->Join();
 
