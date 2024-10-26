@@ -14,9 +14,19 @@ public:
 	virtual void Render(HDC hdc) override;
 
 private:
-	virtual void TickIdle() override {}
+	//old
+	/*virtual void TickIdle() override {}
 	virtual void TickMove() override {}
 	virtual void TickSkill() override {}
-	virtual void UpdateAnimation() override {}
+	virtual void UpdateAnimation() override {}*/
+
+	//new
+	virtual void TickIdle() override;
+	virtual void TickMove() override;
+	virtual void UpdateAnimation() override;
+
+//new
+protected:
+	Flipbook* _flipbookMove[4] = {};
 };
 
