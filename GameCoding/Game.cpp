@@ -5,7 +5,6 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
 #include "SoundManager.h"
-//new
 #include "NetworkManager.h"
 
 Game::Game()
@@ -41,7 +40,6 @@ void Game::Init(HWND hwnd)
 
 	GET_SINGLE(SceneManager)->ChangeScene(SceneType::DevScene);
 
-	//new
 	GET_SINGLE(NetworkManager)->Init();
 }
 
@@ -50,7 +48,6 @@ void Game::Update()
 	GET_SINGLE(TimeManager)->Update();
 	GET_SINGLE(InputManager)->Update();
 	GET_SINGLE(SceneManager)->Update();
-	//new
 	GET_SINGLE(NetworkManager)->Update();
 }
 
