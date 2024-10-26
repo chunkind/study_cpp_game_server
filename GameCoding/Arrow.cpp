@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "Arrow.h"
-//new
 #include "TimeManager.h"
 #include "ResourceManager.h"
 #include "Flipbook.h"
@@ -11,7 +10,6 @@
 
 Arrow::Arrow()
 {
-	//new
 	_flipbookMove[DIR_UP] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_ArrowUp");
 	_flipbookMove[DIR_DOWN] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_ArrowDown");
 	_flipbookMove[DIR_LEFT] = GET_SINGLE(ResourceManager)->GetFlipbook(L"FB_ArrowLeft");
@@ -25,7 +23,6 @@ Arrow::~Arrow()
 void Arrow::BeginPlay()
 {
 	Super::BeginPlay();
-	//new
 	UpdateAnimation();
 }
 
@@ -39,7 +36,6 @@ void Arrow::Render(HDC hdc)
 	Super::Render(hdc);
 }
 
-//new
 void Arrow::TickIdle()
 {
 	DevScene* scene = dynamic_cast<DevScene*>(GET_SINGLE(SceneManager)->GetCurrentScene());
@@ -67,7 +63,6 @@ void Arrow::TickIdle()
 	}
 }
 
-//new
 void Arrow::TickMove()
 {
 	float deltaTime = GET_SINGLE(TimeManager)->GetDeltaTime();
@@ -98,7 +93,6 @@ void Arrow::TickMove()
 	}
 }
 
-//new
 void Arrow::UpdateAnimation()
 {
 	SetFlipbook(_flipbookMove[_dir]);
