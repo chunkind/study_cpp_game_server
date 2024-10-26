@@ -63,6 +63,12 @@
     <Filter Include="소스 파일\03. Objects\Game\Projectile">
       <UniqueIdentifier>{35fb780b-2eff-4819-bd5a-5edb43198a5b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Protocol">
+      <UniqueIdentifier>{04070298-5add-412d-847c-0dabbc8c154c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\07. Network">
+      <UniqueIdentifier>{5b4187f8-249e-463f-b7d3-9912d03e9e93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -200,6 +206,21 @@
     <ClInclude Include="EditScene.h">
       <Filter>소스 파일\03. Objects\Game\Creature</Filter>
     </ClInclude>
+    <ClInclude Include="Enum.pb.h">
+      <Filter>소스 파일\Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol.pb.h">
+      <Filter>소스 파일\Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Struct.pb.h">
+      <Filter>소스 파일\Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientPacketHandler.h">
+      <Filter>소스 파일\07. Network</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerSession.h">
+      <Filter>소스 파일\07. Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameCoding.rc">
@@ -328,6 +349,21 @@
     </ClCompile>
     <ClCompile Include="HitEffect.cpp">
       <Filter>소스 파일\03. Objects\Game\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Enum.pb.cc">
+      <Filter>소스 파일\Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol.pb.cc">
+      <Filter>소스 파일\Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Struct.pb.cc">
+      <Filter>소스 파일\Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientPacketHandler.cpp">
+      <Filter>소스 파일\07. Network</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerSession.cpp">
+      <Filter>소스 파일\07. Network</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
