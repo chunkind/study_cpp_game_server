@@ -19,7 +19,6 @@
 #include "Sound.h"
 #include "Monster.h"
 #include "MyPlayer.h"
-//new
 #include "SceneManager.h"
 
 DevScene::DevScene()
@@ -309,7 +308,6 @@ void DevScene::LoadTilemap()
 	}
 }
 
-//new
 GameObject* DevScene::GetObject(uint64 id)
 {
 	for (Actor* actor : _actors[LAYER_OBJECT])
@@ -531,7 +529,6 @@ Vec2Int DevScene::GetRandomEmptyCellPos()
 	}
 }
 
-//new
 void DevScene::Handle_S_AddObject(Protocol::S_AddObject& pkt)
 {
 	uint64 myPlayerId = GET_SINGLE(SceneManager)->GetMyPlayerId();
@@ -560,7 +557,6 @@ void DevScene::Handle_S_AddObject(Protocol::S_AddObject& pkt)
 	}
 }
 
-//new
 void DevScene::Handle_S_RemoveObject(Protocol::S_RemoveObject& pkt)
 {
 	const int32 size = pkt.ids_size();

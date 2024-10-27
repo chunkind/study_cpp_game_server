@@ -12,7 +12,6 @@
 
 #include <assert.h>
 #include "ClientPacketHandler.h"
-//new
 #include "NetworkManager.h"
 
 // C++20

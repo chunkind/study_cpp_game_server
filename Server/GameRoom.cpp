@@ -96,7 +96,6 @@ GameObjectRef GameRoom::FindObject(uint64 id)
 	return nullptr;
 }
 
-//new
 void GameRoom::Handle_C_Move(Protocol::C_Move& pkt)
 {
 	uint64 id = pkt.info().objectid();

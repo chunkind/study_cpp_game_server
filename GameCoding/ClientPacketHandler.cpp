@@ -26,7 +26,6 @@ void ClientPacketHandler::HandlePacket(ServerSessionRef session, BYTE* buffer, i
 	case S_RemoveObject:
 		Handle_S_RemoveObject(session, buffer, len);
 		break;
-	//new
 	case S_Move:
 		Handle_S_Move(session, buffer, len);
 		break;
@@ -101,7 +100,6 @@ void ClientPacketHandler::Handle_S_AddObject(ServerSessionRef session, BYTE* buf
 	Protocol::S_AddObject pkt;
 	pkt.ParseFromArray(&header[1], size - sizeof(PacketHeader));
 
-	//new
 	DevScene* scene = GET_SINGLE(SceneManager)->GetDevScene();
 	if (scene)
 		scene->Handle_S_AddObject(pkt);
@@ -116,13 +114,11 @@ void ClientPacketHandler::Handle_S_RemoveObject(ServerSessionRef session, BYTE* 
 	Protocol::S_RemoveObject pkt;
 	pkt.ParseFromArray(&header[1], size - sizeof(PacketHeader));
 
-	//new
 	DevScene* scene = GET_SINGLE(SceneManager)->GetDevScene();
 	if (scene)
 		scene->Handle_S_RemoveObject(pkt);
 }
 
-//new
 void ClientPacketHandler::Handle_S_Move(ServerSessionRef session, BYTE* buffer, int32 len)
 {
 	PacketHeader* header = (PacketHeader*)buffer;
@@ -151,7 +147,6 @@ void ClientPacketHandler::Handle_S_Move(ServerSessionRef session, BYTE* buffer, 
 	}
 }
 
-//new
 SendBufferRef ClientPacketHandler::Make_C_Move()
 {
 	Protocol::C_Move pkt;

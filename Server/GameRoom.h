@@ -14,7 +14,6 @@ public:
 	GameObjectRef FindObject(uint64 id);
 	GameRoomRef GetRoomRef() { return shared_from_this(); }
 
-//new
 public:
 	// PacketHandler
 	void Handle_C_Move(Protocol::C_Move& pkt);

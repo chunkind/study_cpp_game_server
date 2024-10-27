@@ -2,7 +2,6 @@
 #include "ServerPacketHandler.h"
 #include "BufferReader.h"
 #include "BufferWriter.h"
-//new
 #include "GameSession.h"
 #include "GameRoom.h"
 
@@ -16,17 +15,14 @@ void ServerPacketHandler::HandlePacket(GameSessionRef session, BYTE* buffer, int
 
 	switch (header.id)
 	{
-	//new
 	case C_Move:
 		Handle_C_Move(session, buffer, len);
 		break;
-
 	default:
 		break;
 	}
 }
 
-//new
 void ServerPacketHandler::Handle_C_Move(GameSessionRef session, BYTE* buffer, int32 len)
 {
 	PacketHeader* header = (PacketHeader*)buffer;
@@ -102,7 +98,6 @@ SendBufferRef ServerPacketHandler::Make_S_RemoveObject(const Protocol::S_RemoveO
 	return MakeSendBuffer(pkt, S_RemoveObject);
 }
 
-//new
 SendBufferRef ServerPacketHandler::Make_S_Move(const Protocol::ObjectInfo& info)
 {
 	Protocol::S_Move pkt;

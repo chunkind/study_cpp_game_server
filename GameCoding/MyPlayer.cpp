@@ -30,8 +30,6 @@ void MyPlayer::BeginPlay()
 void MyPlayer::Tick()
 {
 	Super::Tick();
-
-	//new
 	SyncToServer();
 }
 
@@ -145,7 +143,6 @@ void MyPlayer::TickSkill()
 	Super::TickSkill();
 }
 
-//new
 void MyPlayer::SyncToServer()
 {
 	if (_dirtyFlag == false)

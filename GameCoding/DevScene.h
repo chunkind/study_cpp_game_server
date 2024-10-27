@@ -62,14 +62,11 @@ public:
 		return SpawnObject<T>(randPos);
 	}
 
-//new
 public:
 	void Handle_S_AddObject(Protocol::S_AddObject& pkt);
 	void Handle_S_RemoveObject(Protocol::S_RemoveObject& pkt);
 
-//new
 public:
-	//new
 	GameObject* GetObject(uint64 id);
 
 	Player* FindClosestPlayer(Vec2Int cellPos);

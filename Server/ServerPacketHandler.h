@@ -9,7 +9,6 @@ enum
 	S_AddObject = 5,
 	S_RemoveObject = 6,
 
-	//new
 	C_Move = 10,
 	S_Move = 11,
 };
@@ -26,7 +25,6 @@ public:
 	static void HandlePacket(GameSessionRef session, BYTE* buffer, int32 len);
 
 	// 받기
-	//new
 	static void Handle_C_Move(GameSessionRef session, BYTE* buffer, int32 len);
 	
 	// 보내기
@@ -35,7 +33,6 @@ public:
 	static SendBufferRef Make_S_MyPlayer(const Protocol::ObjectInfo& info);
 	static SendBufferRef Make_S_AddObject(const Protocol::S_AddObject& pkt);
 	static SendBufferRef Make_S_RemoveObject(const Protocol::S_RemoveObject& pkt);
-	//new
 	static SendBufferRef Make_S_Move(const Protocol::ObjectInfo& info);
 
 	template<typename T>
