@@ -65,8 +65,9 @@ void DevScene::Init()
 	LoadEffect();
 	LoadTilemap();
 
-	SpawnObjectAtRandomPos<MyPlayer>();
-	SpawnObject<Monster>(Vec2Int{ 7, 7 });
+	//SpawnObjectAtRandomPos<MyPlayer>();
+	//SpawnObjectAtRandomPos<Monster>();
+	//SpawnObject<Monster>(Vec2Int{ 7, 7 });
 
 	Super::Init();
 }

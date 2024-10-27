@@ -4,6 +4,10 @@ enum
 {
 	S_TEST = 1,
 	S_EnterGame = 2,
+	//new
+	S_MyPlayer = 4,
+	S_AddObject = 5,
+	S_RemoveObject = 6,
 };
 
 struct BuffData
@@ -22,6 +26,10 @@ public:
 	// º¸³»±â
 	static SendBufferRef Make_S_TEST(uint64 id, uint32 hp, uint16 attack, vector<BuffData> buffs);
 	static SendBufferRef Make_S_EnterGame();
+	//new
+	static SendBufferRef Make_S_MyPlayer(const Protocol::ObjectInfo& info);
+	static SendBufferRef Make_S_AddObject(const Protocol::S_AddObject& pkt);
+	static SendBufferRef Make_S_RemoveObject(const Protocol::S_RemoveObject& pkt);
 
 	template<typename T>
 	static SendBufferRef MakeSendBuffer(T& pkt, uint16 pktId)
