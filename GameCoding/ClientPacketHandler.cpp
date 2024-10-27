@@ -14,7 +14,6 @@ void ClientPacketHandler::HandlePacket(BYTE* buffer, int32 len)
 	case S_TEST:
 		Handle_S_TEST(buffer, len);
 		break;
-	//new
 	case S_EnterGame:
 		Handle_S_EnterGame(buffer, len);
 		break;
@@ -43,7 +42,6 @@ void ClientPacketHandler::Handle_S_TEST(BYTE* buffer, int32 len)
 	}
 }
 
-//new
 void ClientPacketHandler::Handle_S_EnterGame(BYTE* buffer, int32 len)
 {
 	PacketHeader* header = (PacketHeader*)buffer;

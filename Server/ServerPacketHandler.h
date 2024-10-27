@@ -3,7 +3,6 @@
 enum
 {
 	S_TEST = 1,
-	//new
 	S_EnterGame = 2,
 };
 
@@ -22,7 +21,6 @@ public:
 	
 	// º¸³»±â
 	static SendBufferRef Make_S_TEST(uint64 id, uint32 hp, uint16 attack, vector<BuffData> buffs);
-	//new
 	static SendBufferRef Make_S_EnterGame();
 
 	template<typename T>

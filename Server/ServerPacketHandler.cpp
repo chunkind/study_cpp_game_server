@@ -45,7 +45,6 @@ SendBufferRef ServerPacketHandler::Make_S_TEST(uint64 id, uint32 hp, uint16 atta
 	return MakeSendBuffer(pkt, S_TEST);
 }
 
-//new
 SendBufferRef ServerPacketHandler::Make_S_EnterGame()
 {
 	Protocol::S_EnterGame pkt;

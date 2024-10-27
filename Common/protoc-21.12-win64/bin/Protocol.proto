@@ -12,7 +12,6 @@ message S_TEST
 	repeated BuffData buffs = 4;
 }
 
-//new
 message S_EnterGame
 {
 	bool success = 1;
