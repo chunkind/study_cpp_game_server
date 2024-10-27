@@ -35,6 +35,10 @@ public:
 	int64 GetObjectID() { return info.objectid(); }
 	void SetObjectID(int64 id) { info.set_objectid(id); }
 
+//new
+protected:
+	bool _dirtyFlag = false;
+
 public:
 	Protocol::ObjectInfo info;
 };

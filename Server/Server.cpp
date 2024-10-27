@@ -12,10 +12,14 @@ using namespace std;
 #include "GameSession.h"
 #include "GameSessionManager.h"
 #include "ServerPacketHandler.h"
+//new
+#include "GameRoom.h"
 
 int main()
 {
 	SocketUtils::Init();
+	//new
+	GRoom->Init();
 
 	ServerServiceRef service = make_shared<ServerService>(
 		NetAddress(L"127.0.0.1", 7777),
@@ -25,7 +29,8 @@ int main()
 
 	assert(service->Start());
 
-	for (int32 i = 0; i < 5; i++)
+	//old
+	/*for (int32 i = 0; i < 5; i++)
 	{
 		GThreadManager->Launch([=]()
 			{
@@ -34,6 +39,12 @@ int main()
 					service->GetIocpCore()->Dispatch();
 				}
 			});
+	}*/
+	//new
+	while (true)
+	{
+		service->GetIocpCore()->Dispatch(0);
+		GRoom->Update();
 	}
 
 	GThreadManager->Join();

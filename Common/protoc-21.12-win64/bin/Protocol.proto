@@ -32,3 +32,15 @@ message S_RemoveObject
 {
 	repeated uint64 ids = 1;
 }
+
+//new
+message C_Move
+{
+	ObjectInfo info = 1;
+}
+
+//new
+message S_Move
+{
+	ObjectInfo info = 1;
+}
