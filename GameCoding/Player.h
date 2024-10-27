@@ -16,7 +16,10 @@ public:
 	virtual void Tick() override;
 	virtual void Render(HDC hdc) override;
 
-private:
+//old
+//private:
+//new
+protected:
 	virtual void TickIdle() override;
 	virtual void TickMove() override;
 	virtual void TickSkill() override;

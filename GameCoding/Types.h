@@ -11,6 +11,9 @@ using uint16 = unsigned __int16;
 using uint32 = unsigned __int32;
 using uint64 = unsigned __int64;
 
+//new
+using ServerSessionRef = std::shared_ptr<class ServerSession>;
+
 struct Stat
 {
 	int32 hp = 0;

@@ -3,7 +3,7 @@
 
 class GameSession : public PacketSession
 
-{
+{ 
 public:
 	~GameSession()
 	{
@@ -14,4 +14,7 @@ public:
 	virtual void OnDisconnected() override;
 	virtual void OnRecvPacket(BYTE* buffer, int32 len) override;
 	virtual void OnSend(int32 len) override;
+
+	//new
+	GameSessionRef GetSessionRef() { return static_pointer_cast<GameSession>(shared_from_this()); }
 };

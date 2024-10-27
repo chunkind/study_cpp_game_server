@@ -2,7 +2,11 @@
 #include "ClientPacketHandler.h"
 #include "BufferReader.h"
 
-void ClientPacketHandler::HandlePacket(BYTE* buffer, int32 len)
+//old
+//void ClientPacketHandler::HandlePacket(BYTE* buffer, int32 len)
+//new
+void ClientPacketHandler::HandlePacket(ServerSessionRef session, BYTE* buffer, int32 len)
+
 {
 	BufferReader br(buffer, len);
 
@@ -12,15 +16,24 @@ void ClientPacketHandler::HandlePacket(BYTE* buffer, int32 len)
 	switch (header.id)
 	{
 	case S_TEST:
-		Handle_S_TEST(buffer, len);
+		//old
+		//Handle_S_TEST(buffer, len);
+		//new
+		Handle_S_TEST(session, buffer, len);
 		break;
 	case S_EnterGame:
-		Handle_S_EnterGame(buffer, len);
+		//old
+		//Handle_S_EnterGame(buffer, len);
+		//new
+		Handle_S_EnterGame(session, buffer, len);
 		break;
 	}
 }
 
-void ClientPacketHandler::Handle_S_TEST(BYTE* buffer, int32 len)
+//old
+//void ClientPacketHandler::Handle_S_TEST(BYTE* buffer, int32 len)
+//new
+void ClientPacketHandler::Handle_S_TEST(ServerSessionRef session, BYTE* buffer, int32 len)
 {
 	PacketHeader* header = (PacketHeader*)buffer;
 	//uint16 id = header->id;
@@ -42,7 +55,10 @@ void ClientPacketHandler::Handle_S_TEST(BYTE* buffer, int32 len)
 	}
 }
 
-void ClientPacketHandler::Handle_S_EnterGame(BYTE* buffer, int32 len)
+//old
+//void ClientPacketHandler::Handle_S_EnterGame(BYTE* buffer, int32 len)
+//new
+void ClientPacketHandler::Handle_S_EnterGame(ServerSessionRef session, BYTE* buffer, int32 len)
 {
 	PacketHeader* header = (PacketHeader*)buffer;
 	//uint16 id = header->id;

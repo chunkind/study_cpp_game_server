@@ -16,7 +16,10 @@ public:
 
 	virtual void OnRecvPacket(BYTE * buffer, int32 len) override
 	{
-		ClientPacketHandler::HandlePacket(buffer, len);
+		//old
+		//ClientPacketHandler::HandlePacket(buffer, len);
+		//new
+		ClientPacketHandler::HandlePacket(static_pointer_cast<ServerSession>(shared_from_this()), buffer, len);
 	}
 
 	virtual void OnSend(int32 len) override

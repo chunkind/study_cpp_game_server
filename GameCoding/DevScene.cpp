@@ -18,6 +18,8 @@
 #include "SoundManager.h"
 #include "Sound.h"
 #include "Monster.h"
+//new
+#include "MyPlayer.h"
 
 DevScene::DevScene()
 {
@@ -64,7 +66,11 @@ void DevScene::Init()
 	LoadEffect();
 	LoadTilemap();
 
-	SpawnObject<Player>(Vec2Int{ 5, 5 });
+	//old
+	//SpawnObject<Player>(Vec2Int{ 5, 5 });
+	//new
+	SpawnObjectAtRandomPos<MyPlayer>();
+
 	SpawnObject<Monster>(Vec2Int{ 7, 7 });
 
 	Super::Init();

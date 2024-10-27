@@ -1,6 +1,10 @@
 #pragma once
 
 #include "CorePch.h"
+
+//new
+using GameSessionRef = std::shared_ptr<class GameSession>;
+
 #include "Protocol.pb.h"
 #include "Enum.pb.h"
 #include "Struct.pb.h"
@@ -12,3 +16,7 @@
 #pragma comment(lib, "ServerCore\\Release\\ServerCore.lib")
 #pragma comment(lib, "Protobuf\\Release\\libprotobuf.lib")
 #endif
+
+//new
+#include "ServerPacketHandler.h"
+
