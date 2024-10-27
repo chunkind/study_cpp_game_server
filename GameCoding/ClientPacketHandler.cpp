@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "ClientPacketHandler.h"
 #include "BufferReader.h"
-//new
 #include "DevScene.h"
 #include "MyPlayer.h"
 #include "SceneManager.h"
@@ -15,14 +14,9 @@ void ClientPacketHandler::HandlePacket(ServerSessionRef session, BYTE* buffer, i
 
 	switch (header.id)
 	{
-	//old
-	/*case S_TEST:
-		Handle_S_TEST(session, buffer, len);
-		break;*/
 	case S_EnterGame:
 		Handle_S_EnterGame(session, buffer, len);
 		break;
-	//new
 	case S_MyPlayer:
 		Handle_S_MyPlayer(session, buffer, len);
 		break;
@@ -73,7 +67,6 @@ void ClientPacketHandler::Handle_S_EnterGame(ServerSessionRef session, BYTE* buf
 
 }
 
-//new
 void ClientPacketHandler::Handle_S_MyPlayer(ServerSessionRef session, BYTE* buffer, int32 len)
 {
 	PacketHeader* header = (PacketHeader*)buffer;
@@ -95,7 +88,6 @@ void ClientPacketHandler::Handle_S_MyPlayer(ServerSessionRef session, BYTE* buff
 	}
 }
 
-//new
 void ClientPacketHandler::Handle_S_AddObject(ServerSessionRef session, BYTE* buffer, int32 len)
 {
 	PacketHeader* header = (PacketHeader*)buffer;
@@ -107,7 +99,6 @@ void ClientPacketHandler::Handle_S_AddObject(ServerSessionRef session, BYTE* buf
 
 }
 
-//new
 void ClientPacketHandler::Handle_S_RemoveObject(ServerSessionRef session, BYTE* buffer, int32 len)
 {
 	PacketHeader* header = (PacketHeader*)buffer;

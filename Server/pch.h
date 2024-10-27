@@ -3,10 +3,7 @@
 #include "CorePch.h"
 
 using GameSessionRef = std::shared_ptr<class GameSession>;
-//new
 using GameRoomRef = std::shared_ptr<class GameRoom>;
-
-//new
 using GameObjectRef = std::shared_ptr<class GameObject>;
 using CreatureRef = std::shared_ptr<class Creature>;
 using PlayerRef = std::shared_ptr<class Player>;

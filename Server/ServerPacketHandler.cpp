@@ -56,7 +56,6 @@ SendBufferRef ServerPacketHandler::Make_S_EnterGame()
 	return MakeSendBuffer(pkt, S_EnterGame);
 }
 
-//new
 SendBufferRef ServerPacketHandler::Make_S_MyPlayer(const Protocol::ObjectInfo& info)
 {
 	Protocol::S_MyPlayer pkt;

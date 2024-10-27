@@ -1,7 +1,6 @@
 #pragma once
 
 class Scene;
-//new
 class MyPlayer;
 
 class SceneManager
@@ -18,10 +17,8 @@ public:
 public:
 	void ChangeScene(SceneType sceneType);
 	Scene* GetCurrentScene() { return _scene; }
-	//new
 	class DevScene* GetDevScene();
 
-	//new
 	MyPlayer* GetMyPlayer() { return _myPlayer; }
 	uint64 GetMyPlayerId();
 	void SetMyPlayer(MyPlayer* myPlayer) { _myPlayer = myPlayer; }
@@ -30,7 +27,6 @@ private:
 	Scene* _scene;
 	SceneType _sceneType = SceneType::None;
 
-	//new
 	MyPlayer* _myPlayer = nullptr;
 
 public:

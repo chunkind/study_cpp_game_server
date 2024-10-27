@@ -2,7 +2,6 @@
 #include "SceneManager.h"
 #include "DevScene.h"
 #include "EditScene.h"
-//new
 #include "MyPlayer.h"
 
 void SceneManager::Init()
@@ -52,13 +51,11 @@ void SceneManager::ChangeScene(SceneType sceneType)
 	newScene->Init();
 }
 
-//new
 DevScene* SceneManager::GetDevScene()
 {
 	return dynamic_cast<DevScene*>(GetCurrentScene());
 }
 
-//new
 uint64 SceneManager::GetMyPlayerId()
 {
 	return _myPlayer ? _myPlayer->info.objectid() : 0;

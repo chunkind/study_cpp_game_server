@@ -2,7 +2,6 @@
 #include "GameRoom.h"
 #include "Player.h"
 #include "Monster.h"
-//new
 #include "GameSession.h"
 
 GameRoomRef GRoom = make_shared<GameRoom>();

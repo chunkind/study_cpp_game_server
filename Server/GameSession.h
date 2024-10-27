@@ -15,10 +15,8 @@ public:
 	virtual void OnRecvPacket(BYTE* buffer, int32 len) override;
 	virtual void OnSend(int32 len) override;
 
-	//new
 	GameSessionRef GetSessionRef() { return static_pointer_cast<GameSession>(shared_from_this()); }
 
-//new
 public:
 	weak_ptr<GameRoom> gameRoom;
 	weak_ptr<Player> player;
