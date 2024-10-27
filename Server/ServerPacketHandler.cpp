@@ -3,9 +3,6 @@
 #include "BufferReader.h"
 #include "BufferWriter.h"
 
-//old
-//void ServerPacketHandler::HandlePacket(BYTE* buffer, int32 len)
-//new
 void ServerPacketHandler::HandlePacket(GameSessionRef session, BYTE* buffer, int32 len)
 
 {

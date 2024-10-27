@@ -10,7 +10,6 @@ message BuffData
 	repeated uint64 victims = 3;
 }
 
-//new
 message ObjectInfo
 {
 	uint64 objectId = 1;

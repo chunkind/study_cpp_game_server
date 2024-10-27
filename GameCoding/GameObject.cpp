@@ -52,23 +52,15 @@ void GameObject::Render(HDC hdc)
 
 void GameObject::SetState(ObjectState state)
 {
-	//old
-	//if (_state == state)
-	//new
 	if (info.state() == state)
 		return;
 
-	//old
-	//_state = state;
 	info.set_state(state);
 	UpdateAnimation();
 }
 
 void GameObject::SetDir(Dir dir)
 {
-	//old
-	//info.dir() = dir;
-	//new
 	info.set_dir(dir);
 	UpdateAnimation();
 }
@@ -103,9 +95,6 @@ Dir GameObject::GetLookAtDir(Vec2Int cellPos)
 
 void GameObject::SetCellPos(Vec2Int cellPos, bool teleport)
 {
-	//old
-	//GetCellPos() = cellPos;
-	//new
 	info.set_posx(cellPos.x);
 	info.set_posy(cellPos.y);
 
@@ -119,30 +108,11 @@ void GameObject::SetCellPos(Vec2Int cellPos, bool teleport)
 		_pos = _destPos;
 }
 
-//new
 Vec2Int GameObject::GetCellPos()
 {
 	return Vec2Int{ info.posx(), info.posy() };
 }
 
-//old
-/*Vec2Int GameObject::GetFrontCellPos()
-{
-	switch (info.dir())
-	{
-	case DIR_DOWN:
-		return GetCellPos() + Vec2Int{ 0, 1 };
-	case DIR_LEFT:
-		return GetCellPos() + Vec2Int{ -1, 0 };
-	case DIR_RIGHT:
-		return GetCellPos() + Vec2Int{ 1, 0 };
-	case DIR_UP:
-		return GetCellPos() + Vec2Int{ 0, -1 };
-	}
-
-	return GetCellPos();
-}*/
-//new
 Vec2Int GameObject::GetFrontCellPos()
 {
 	switch (info.dir())

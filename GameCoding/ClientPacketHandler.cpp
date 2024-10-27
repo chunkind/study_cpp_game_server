@@ -2,11 +2,7 @@
 #include "ClientPacketHandler.h"
 #include "BufferReader.h"
 
-//old
-//void ClientPacketHandler::HandlePacket(BYTE* buffer, int32 len)
-//new
 void ClientPacketHandler::HandlePacket(ServerSessionRef session, BYTE* buffer, int32 len)
-
 {
 	BufferReader br(buffer, len);
 
@@ -16,23 +12,14 @@ void ClientPacketHandler::HandlePacket(ServerSessionRef session, BYTE* buffer, i
 	switch (header.id)
 	{
 	case S_TEST:
-		//old
-		//Handle_S_TEST(buffer, len);
-		//new
 		Handle_S_TEST(session, buffer, len);
 		break;
 	case S_EnterGame:
-		//old
-		//Handle_S_EnterGame(buffer, len);
-		//new
 		Handle_S_EnterGame(session, buffer, len);
 		break;
 	}
 }
 
-//old
-//void ClientPacketHandler::Handle_S_TEST(BYTE* buffer, int32 len)
-//new
 void ClientPacketHandler::Handle_S_TEST(ServerSessionRef session, BYTE* buffer, int32 len)
 {
 	PacketHeader* header = (PacketHeader*)buffer;
@@ -55,9 +42,6 @@ void ClientPacketHandler::Handle_S_TEST(ServerSessionRef session, BYTE* buffer, 
 	}
 }
 
-//old
-//void ClientPacketHandler::Handle_S_EnterGame(BYTE* buffer, int32 len)
-//new
 void ClientPacketHandler::Handle_S_EnterGame(ServerSessionRef session, BYTE* buffer, int32 len)
 {
 	PacketHeader* header = (PacketHeader*)buffer;

@@ -9,7 +9,6 @@ enum PlayerType
 	PLAYER_TYPE_ARCHER = 3;
 }
 
-//new
 enum OBJECT_TYPE
 {
 	OBJECT_TYPE_NONE = 0;
@@ -17,7 +16,6 @@ enum OBJECT_TYPE
 	OBJECT_TYPE_MONSTER = 2;
 }
 
-//new
 enum OBJECT_STATE_TYPE
 {
 	OBJECT_STATE_TYPE_IDLE = 0;
@@ -25,7 +23,6 @@ enum OBJECT_STATE_TYPE
 	OBJECT_STATE_TYPE_SKILL = 2;
 }
 
-//new
 enum DIR_TYPE
 {
 	DIR_TYPE_UP = 0;
