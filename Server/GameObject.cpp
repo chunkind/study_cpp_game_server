@@ -6,9 +6,9 @@
 
 atomic<uint64> GameObject::s_idGenerator = 1;
 
-//new
 void GameObject::Update()
 {
+
 }
 
 PlayerRef GameObject::CreatePlayer()
@@ -29,7 +29,6 @@ MonsterRef GameObject::CreateMonster()
 	return monster;
 }
 
-//new
 void GameObject::SetState(ObjectState state, bool broadcast)
 {
 	if (info.state() == state)
@@ -41,7 +40,6 @@ void GameObject::SetState(ObjectState state, bool broadcast)
 		BroadcastMove();
 }
 
-//new
 void GameObject::SetDir(Dir dir, bool broadcast)
 {
 	info.set_dir(dir);
@@ -50,7 +48,6 @@ void GameObject::SetDir(Dir dir, bool broadcast)
 		BroadcastMove();
 }
 
-//new
 bool GameObject::CanGo(Vec2Int cellPos)
 {
 	if (room == nullptr)
@@ -59,7 +56,6 @@ bool GameObject::CanGo(Vec2Int cellPos)
 	return room->CanGo(cellPos);
 }
 
-//new
 Dir GameObject::GetLookAtDir(Vec2Int cellPos)
 {
 	Vec2Int dir = cellPos - GetCellPos();
@@ -73,7 +69,6 @@ Dir GameObject::GetLookAtDir(Vec2Int cellPos)
 		return DIR_UP;
 }
 
-//new
 void GameObject::SetCellPos(Vec2Int cellPos, bool broadcast)
 {
 	info.set_posx(cellPos.x);
@@ -83,7 +78,6 @@ void GameObject::SetCellPos(Vec2Int cellPos, bool broadcast)
 		BroadcastMove();
 }
 
-//new
 Vec2Int GameObject::GetFrontCellPos()
 {
 	Vec2Int pos = GetCellPos();
@@ -103,7 +97,6 @@ Vec2Int GameObject::GetFrontCellPos()
 	return pos;
 }
 
-//new
 void GameObject::BroadcastMove()
 {
 	if (room)

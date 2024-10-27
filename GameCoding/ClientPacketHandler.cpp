@@ -143,8 +143,8 @@ void ClientPacketHandler::Handle_S_Move(ServerSessionRef session, BYTE* buffer, 
 			gameObject->SetDir(info.dir());
 			gameObject->SetState(info.state());
 			//텔레포트 테스트 
-			//gameObject->SetCellPos(Vec2Int{ info.posx(), info.posy() });
-			gameObject->SetCellPos(Vec2Int{ info.posx(), info.posy() }, true);
+			gameObject->SetCellPos(Vec2Int{ info.posx(), info.posy() });
+			//gameObject->SetCellPos(Vec2Int{ info.posx(), info.posy() }, true);
 		}
 	}
 }

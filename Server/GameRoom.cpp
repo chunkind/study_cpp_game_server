@@ -8,6 +8,7 @@ GameRoomRef GRoom = make_shared<GameRoom>();
 
 GameRoom::GameRoom()
 {
+
 }
 
 GameRoom::~GameRoom()
@@ -22,19 +23,16 @@ void GameRoom::Init()
 	monster->info.set_posy(8);
 	AddObject(monster);
 
-	//new
 	_tilemap.LoadFile(L"C:\\git\\study_cpp_game_server\\Resources\\Tilemap\\Tilemap_01_FINAL.txt");
 }
 
 void GameRoom::Update()
 {
-	//new
 	for (auto& item : _players)
 	{
 		item.second->Update();
 	}
 
-	//new
 	for (auto& item : _monsters)
 	{
 		item.second->Update();
@@ -198,7 +196,6 @@ void GameRoom::Broadcast(SendBufferRef& sendBuffer)
 	}
 }
 
-//new
 PlayerRef GameRoom::FindClosestPlayer(Vec2Int pos)
 {
 	float best = FLT_MAX;
@@ -222,7 +219,6 @@ PlayerRef GameRoom::FindClosestPlayer(Vec2Int pos)
 	return ret;
 }
 
-//new
 bool GameRoom::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32 maxDepth /*= 10*/)
 {
 	int32 depth = abs(src.y - dest.y) + abs(src.x - dest.x);
@@ -340,7 +336,6 @@ bool GameRoom::FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32 
 	return true;
 }
 
-//new
 bool GameRoom::CanGo(Vec2Int cellPos)
 {
 	Tile* tile = _tilemap.GetTileAt(cellPos);
@@ -354,7 +349,6 @@ bool GameRoom::CanGo(Vec2Int cellPos)
 	return tile->value != 1;
 }
 
-//new
 Vec2Int GameRoom::GetRandomEmptyCellPos()
 {
 	Vec2Int ret = { -1, -1 };
@@ -373,7 +367,6 @@ Vec2Int GameRoom::GetRandomEmptyCellPos()
 	}
 }
 
-//new
 GameObjectRef GameRoom::GetGameObjectAt(Vec2Int cellPos)
 {
 	for (auto& item : _players)

@@ -1,8 +1,6 @@
 #pragma once
-//new
 #include "Tilemap.h"
 
-//new
 struct PQNode
 {
 	PQNode(int32 cost, Vec2Int pos) : cost(cost), pos(pos) { }
@@ -37,7 +35,6 @@ public:
 	void RemoveObject(uint64 id);
 	void Broadcast(SendBufferRef& sendBuffer);
 
-//new
 public:
 	PlayerRef FindClosestPlayer(Vec2Int pos);
 	bool FindPath(Vec2Int src, Vec2Int dest, vector<Vec2Int>& path, int32 maxDepth = 10);
@@ -48,7 +45,6 @@ public:
 private:
 	map<uint64, PlayerRef> _players;
 	map<uint64, MonsterRef> _monsters;
-	//new
 	Tilemap _tilemap;
 };
 

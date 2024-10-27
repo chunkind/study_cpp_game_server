@@ -572,9 +572,6 @@ void DevScene::Handle_S_RemoveObject(Protocol::S_RemoveObject& pkt)
 
 void DevScene::TickMonsterSpawn()
 {
-	//old
-	//if (_monsterCount < DESIRED_MONSTER_COUNT)
-	//new
 	return;
 	if (_monsterCount < DESIRED_COUNT)
 		SpawnObjectAtRandomPos<Monster>();

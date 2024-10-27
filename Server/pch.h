@@ -10,26 +10,21 @@ using CreatureRef = std::shared_ptr<class Creature>;
 using PlayerRef = std::shared_ptr<class Player>;
 using MonsterRef = std::shared_ptr<class Monster>;
 
-//new
 #include "Enum.pb.h"
 using Dir = Protocol::DIR_TYPE;
 
-//new
 #define DIR_DOWN	Protocol::DIR_TYPE_DOWN
 #define DIR_UP		Protocol::DIR_TYPE_UP
 #define DIR_LEFT	Protocol::DIR_TYPE_LEFT
 #define DIR_RIGHT	Protocol::DIR_TYPE_RIGHT
 
-//new
 #define IDLE	Protocol::OBJECT_STATE_TYPE_IDLE
 #define MOVE	Protocol::OBJECT_STATE_TYPE_MOVE
 #define SKILL	Protocol::OBJECT_STATE_TYPE_SKILL
 
-//new
 using ObjectState = Protocol::OBJECT_STATE_TYPE;
 
 #include "Protocol.pb.h"
-//old
 #include "Enum.pb.h"
 #include "Struct.pb.h"
 
@@ -43,7 +38,6 @@ using ObjectState = Protocol::OBJECT_STATE_TYPE;
 
 #include "ServerPacketHandler.h"
 
-//new
 struct VectorInt
 {
 	VectorInt() {}
@@ -131,5 +125,4 @@ struct VectorInt
 	int32 y = 0;
 };
 
-//new
 using Vec2Int = VectorInt;

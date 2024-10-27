@@ -1,12 +1,10 @@
 #include "pch.h"
 #include "Monster.h"
-//new
 #include "GameRoom.h"
 #include "Player.h"
 
 Monster::Monster()
 {
-	//new
 	info.set_name("MonsterName");
 	info.set_hp(50);
 	info.set_maxhp(50);
@@ -21,10 +19,6 @@ Monster::~Monster()
 
 void Monster::Update()
 {
-	//new
-	//Super::Update();
-
-	//new
 	switch (info.state())
 	{
 	case IDLE:
@@ -39,7 +33,6 @@ void Monster::Update()
 	}
 }
 
-//new
 void Monster::UpdateIdle()
 {
 	if (room == nullptr)
@@ -83,7 +76,6 @@ void Monster::UpdateIdle()
 	}
 }
 
-//new
 void Monster::UpdateMove()
 {
 	uint64 now = GetTickCount64();
@@ -94,7 +86,6 @@ void Monster::UpdateMove()
 	SetState(IDLE);
 }
 
-//new
 void Monster::UpdateSkill()
 {
 	uint64 now = GetTickCount64();
